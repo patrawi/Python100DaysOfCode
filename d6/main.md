@@ -1,4 +1,7 @@
-```def turn_right():
+Below is the solution from reeborg's world (maze):
+
+```
+def turn_right():
     turn_left()
     turn_left()
     turn_left()
