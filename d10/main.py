@@ -51,6 +51,7 @@ def main():
         else: 
             data['result_number'] = 0
             data['count'] =0
+            system('clear')
 
 
 
