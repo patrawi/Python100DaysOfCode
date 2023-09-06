@@ -31,14 +31,11 @@ def main():
         'result_number' :0,
         'count' : 0
     }
-    while True:
-        
-        if data['count'] == 0 :
-            first_number = float(input("What's your first number?: "))
-        else :
-            first_number = data['result_number']
-        for s in symbols:
+    should_continue = True
+    first_number = float(input("What's your first number?: "))
+    for s in symbols:
             print(s)
+    while should_continue:
         operation = input("Pick an operation: ")
         next_number = float(input("What's the next number?: "))
         calculate_func = symbols[operation]
@@ -46,12 +43,11 @@ def main():
         print(f"{first_number} {operation} {next_number} = {result}")
         decision = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ")
         if decision == 'y':
-            data['result_number'] = result
-            data['count'] += 1
+            first_number = result
         else: 
-            data['result_number'] = 0
-            data['count'] =0
+            should_continue = False
             system('clear')
+            main()
 
 
 
