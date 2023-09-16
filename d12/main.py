@@ -2,8 +2,6 @@
 import random
 from art import logo
 
-GUESSING_TIME_EASY = 10
-GUESSING_TIME_HARD = 5
 levels = {"hard": 5, "easy": 10}
 
 
