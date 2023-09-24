@@ -26,8 +26,9 @@ player_lose = "You lose 😤"
 player_draw = "Draw 🙃"
 opponent_lose = "Opponent went over. You win 😁"
 opponent_win = "You went over. You lose "
-opponent_blackjack = 'Lose, opponent has Blackjack 😱'
-player_blackjack = 'Win with a Blackjack 😎'
+opponent_blackjack = "Lose, opponent has Blackjack 😱"
+player_blackjack = "Win with a Blackjack 😎"
+
 
 def deal_card():
     """dealer give a player and computer a card"""
@@ -36,7 +37,7 @@ def deal_card():
     return card
 
 
-def calculate_score(cards):
+def calculate_score(cards) -> int:
     """Take a list of cards and return the score calculated from the cards"""
     if 11 in cards and sum(cards) > 21:
         occurrence_11 = cards.count(11)
@@ -48,10 +49,7 @@ def calculate_score(cards):
 
 def compare(user_score, computer_score):
     """compare the score"""
-    if (
-        user_score > 21
-        and computer_score > 21
-    ):
+    if user_score > 21 and computer_score > 21:
         return opponent_win
     if user_score == computer_score:
         return player_draw
@@ -67,6 +65,8 @@ def compare(user_score, computer_score):
         return player_win
     else:
         return player_lose
+
+
 def main():
     """main function"""
     hands = {"player": [], "computer": []}
@@ -75,26 +75,28 @@ def main():
         hands["player"].append(deal_card())
         hands["computer"].append(deal_card())
     should_continue = True
+    computer_score = 0
+    player_score = 0
     while should_continue:
-        player_score = calculate_score(hands['player'])
-        computer_score = calculate_score(hands['computer'])
-        print(
-            f"\t Your cards: {hands['player']}, current score: {player_score}"
-        )
+        player_score = calculate_score(hands["player"])
+        computer_score = calculate_score(hands["computer"])
+
+        print(f"\t Your cards: {hands['player']}, current score: {player_score}")
         print(f"\t Computer's first card: {hands['computer'][0]}")
         if player_score > 21 or player_score == 21 or computer_score == 21:
             should_continue = False
         else:
             is_deal_another = input(
-            "Type 'y' to get another card, type 'n' to pass: "
-        ).lower()
+                "Type 'y' to get another card, type 'n' to pass: "
+            ).lower()
             if is_deal_another == "y":
                 hands["player"].append(deal_card())
             else:
                 should_continue = False
+
     while computer_score < 17:
-        hands['computer'].append(deal_card())
-        computer_score = calculate_score(hands['computer'])
+        hands["computer"].append(deal_card())
+        computer_score = calculate_score(hands["computer"])
     print(f"Your final hand: {hands['player']}, final score: {sum(hands['player'])}")
     print(
         f"Computer's final hand: {hands['computer']}, final score: {sum(hands['computer'])}"
